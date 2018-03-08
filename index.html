@@ -1,0 +1,62 @@
+<!doctype HTML>
+<html>
+
+<head>
+	<style type="text/css">
+		#canvas{
+			position: absolute;
+			left: 50%;
+			margin-left: -300px;
+			top: 50%;
+			margin-top: -300px;
+		}
+	</style>
+</head>
+
+<body>
+	
+	<canvas id="canvas" height="600px" width="600px"></canvas>
+
+	<script>
+		var c = document.getElementById("canvas");
+		var ctx = c.getContext("2d");
+
+		ctx.lineWidth = 60;
+
+		var tempLength = 600;
+		var lineLength = 0;
+		var x = 0;
+		var y = 30;
+
+
+		fill();
+
+		function fill(){
+			requestAnimationFrame(fill);
+
+			if(lineLength < tempLength){
+				ctx.beginPath();
+				ctx.moveTo(x,y);
+				ctx.lineTo(lineLength,y);
+				ctx.stroke();
+				lineLength+=20;
+			}
+			else{
+				if(y < 570){
+					y+=60;
+					lineLength = 0;
+				}
+				else{
+					y=30;
+					lineLength = 0;
+					ctx.strokeStyle = '#'+ Math.random().toString(16).slice(-6);
+				}
+			}
+			
+			
+		}
+
+	</script>
+</body>
+
+</html>
